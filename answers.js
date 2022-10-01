@@ -12,7 +12,7 @@ const getByteArray = (str) => str.match(/.{8}/g);
 
 /**
  * @param {string} str binary string e.g 01010000
- * @returns {integer} integer value e.g 80
+ * @returns {number} integer value e.g 80
 */
 const getBinaryStringValue = (str) => {
     let reverseIndex = 0;
