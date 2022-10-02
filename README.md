@@ -45,8 +45,8 @@ ASCII works the following way:
 Knowing this let's try a few things in **NodeJS** : 
 
 1. Create a function that can give the integer value of an 8 bit string. Your function should take a string and return an integer value. return null if non binary string is provided.
-2. Create a function that will take an integer within the range of `0-255` and return a 8-bit binary string. Return null if number is out of range.
-3. Create a function that will translate an ASCII text strings to a binary string. You don't need to handle string with special characters or numbers in those cases return null;
+2. Create a function that will take an integer within the range of `0-255` and return a 8-bit binary string. Return null if number is out of range. Return null if value is not a number.
+3. Create a function that will translate an ASCII text string to a binary string. You don't need to handle string with special characters or numbers in those cases return null;
 4. Create a function that will translate a binary string into an ASCII text string.
 
 (Some advice make some helper functions as you build your solutions. DRY practices are important.)
