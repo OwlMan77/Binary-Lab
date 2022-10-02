@@ -111,10 +111,10 @@ const translateASCIItoBinaryString = (str) => {
 
 /**
  * @param {string} str e.g AAA accepts letters only.
- * @returns {string} 010000010100000101000001
+ * @returns {string} e.g 010000010100000101000001
 */
 const translateBinarytoASCIIString = (str) => {
-    if (!/^[0-1]+$/.test(str)) {
+    if (!/^[0-1]+$/.test(str)) { 
         return null;
     }
 
