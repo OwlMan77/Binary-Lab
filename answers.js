@@ -1,4 +1,4 @@
-const { testSolution1, testSolution2 } = require('./tests');
+const { testSolution1, testSolution2, testSolution3 } = require('./tests');
 
 /**
  * Helper functions
@@ -9,6 +9,18 @@ const { testSolution1, testSolution2 } = require('./tests');
  * @returns {Array<string>} string byte strings
 */
 const getByteArray = (str) => str.match(/.{8}/g);
+
+/**
+ * @param {string} str e.g AAA
+ * @returns {boolean} true
+*/
+const isUpperCase = (str) => str === str.toUpperCase()
+
+/**
+ * @param {string} letter e.g A
+ * @returns {number} position e.g 1 
+*/
+const getAlphabetPosition = (letter) => 'abcdefghijklmnopqrstuvwxyz'.split('').findIndex((l) => letter.toLocaleLowerCase() === l) + 1;
 
 /**
  * @param {string} str binary string e.g 01010000
@@ -44,7 +56,7 @@ const convertIntegerToBinaryString = (integer) => {
         return null;
     }
 
-    // function example I made based off the logic this video: (https://www.youtube.com/watch?v=Ieq8AR8krrA, credit Max's Tech) 
+    // function example I made based off the logic in this video: (https://www.youtube.com/watch?v=Ieq8AR8krrA, credit Max's Tech) 
     while (acc > 0) {
         const remainder = acc % 2;
         binaryString += remainder === 1 ? '1' : '0';
@@ -71,6 +83,24 @@ const convertIntegerToBinaryString = (integer) => {
 }
 
 /**
+ * @param {string} str e.g AAA accepts letters only.
+ * @returns {string} 010000010100000101000001
+*/
+const translateASCIItoBinaryString = (str) => {
+    if (!/^[a-zA-Z]+$/.test(str)) { // ensures that strings are only letters
+        return null;
+    }
+    const letterArr = str.split('');
+    const binaryArray = letterArr.map((letter) => {
+      const letterValue = getAlphabetPosition(letter);
+      const leadingMarker = isUpperCase(letter) ? '010' : '011';
+      return convertIntegerToBinaryString(letterValue).replace(/^\d{1,3}/, leadingMarker);
+    });
+  
+    return binaryArray.join('');
+}
+
+/**
  *  Section 1 
  * */ 
 
@@ -93,14 +123,21 @@ const solution2 = (integer) => convertIntegerToBinaryString(integer);
 /**
  * @description Question 3 - translate an ASCII text string to a binary string.
  * @param {string} str ASCII string like 'AAAA'
- * @returns {number} binaryString e.g 01010000 
+ * @returns {string} binaryString e.g 01010000 
 */
+const solution3 = (str) => translateASCIItoBinaryString(str);
 
-const solution3 = () => {}
-
+/**
+ * @description Question 4 - translate a binary string to an ASCII text string .
+ * @param {string} str binaryString e.g 01010000 
+ * @returns {string} ASCII string like 'AAAA'
+*/
+const solution4 = (str) => {}
 
 /**
  * Tests
  * */
 testSolution1(solution1);
 testSolution2(solution2);
+testSolution3(solution3);
+

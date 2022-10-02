@@ -58,8 +58,12 @@ const testSolution1 = (cb) => {
     cond(cb, tests);
 }
 
+/**
+ * @param {testCallback} cb
+*/
+
 const testSolution2 = (cb) => {
-    console.log('\x1b[33m', 'Question 2: Create a function that will take an integer within the range of `0-255` and return a 8-bit binary string. Return null if number is out of range')
+    console.log('\x1b[33m', 'Question 2: Create a function that will take an integer within the range of `0-255` and return a 8-bit binary string.')
     const tests = [{
         testName: 'Should convert 80 correctly',
         inputValue: 80,
@@ -80,9 +84,49 @@ const testSolution2 = (cb) => {
         inputValue: 1,
         expectedResult: '00000001',
     },
+    {
+        testName: 'Should return null for invalid binary string',
+        inputValue: '898090909',
+        expectedResult: null,
+    }
     ]
 
     cond(cb, tests);
 }
 
-module.exports = { testSolution1, testSolution2 };
+/**
+ * @param {testCallback} cb
+*/
+const testSolution3 = (cb) => {
+    console.log('\x1b[33m', 'Question 3: Create a function that will translate an ASCII text string to a binary string')
+    const tests = [{
+        testName: 'Should convert AAA correctly',
+        inputValue: 'AAA',
+        expectedResult: '010000010100000101000001',
+    },
+    {
+        testName: 'Should convert aaa correctly',
+        inputValue: 'aaa',
+        expectedResult: '011000010110000101100001',
+    },
+    {
+        testName: 'Should convert CAKE correctly',
+        inputValue: 'CAKE',
+        expectedResult: '01000011010000010100101101000101',
+    },
+    {
+        testName: 'Should convert cake correctly',
+        inputValue: 'cake',
+        expectedResult: '01100011011000010110101101100101',
+    },
+    {
+        testName: 'Should return null for special character/number string',
+        inputValue: '8980---{}90909',
+        expectedResult: null,
+    }
+    ]
+
+    cond(cb, tests);
+}
+
+module.exports = { testSolution1, testSolution2, testSolution3 };
