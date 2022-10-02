@@ -62,7 +62,8 @@ const convertIntegerToBinaryString = (integer) => {
         return null;
     }
 
-    // function example I made based off the logic in this video: (https://www.youtube.com/watch?v=Ieq8AR8krrA, credit Max's Tech) 
+    // function example I made based off the logic in this video: (https://www.youtube.com/watch?v=Ieq8AR8krrA, credit Max's Tech)
+    // This however can easily be done with integer.toString(2). 
     while (acc > 0) {
         const remainder = acc % 2;
         binaryString += remainder === 1 ? '1' : '0';
