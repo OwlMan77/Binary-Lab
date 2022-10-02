@@ -16,12 +16,15 @@
  * @param {testCallback} cb
  * @param {Array<TestCondition>} testInputValues 
 */
-const cond = (cb, testInputValues) => testInputValues.every(({ inputValue, expectedResult, testName }) => {
-  const result = cb(inputValue);
-  const passed = cb(inputValue) === expectedResult;
-  console.log(`${passed ? '\x1b[32m' : '\x1b[31m'}`, `${testName}: ${passed ? 'PASSED' : 'FAILED'}`, `Expected: ${expectedResult} Result: ${result}`)
-  return result === expectedResult;
-})
+const cond = (cb, testInputValues) => { 
+    testInputValues.every(({ inputValue, expectedResult, testName }, index) => {
+        const result = cb(inputValue);
+        const passed = cb(inputValue) === expectedResult;
+        console.log(`${passed ? '\x1b[32m' : '\x1b[31m'}`, `${index + 1}. ${testName}: ${passed ? 'PASSED' : 'FAILED'}`, `Expected: ${expectedResult} Result: ${result}`)
+        return result === expectedResult;
+    });
+    console.log(' ');
+}
 
 /**
  * @param {testCallback} cb
