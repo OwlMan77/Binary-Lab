@@ -1,4 +1,4 @@
-const { testSolution1, testSolution2, testSolution3 } = require('./tests');
+const { testSolution1, testSolution2, testSolution3, testSolution4 } = require('./tests');
 
 /**
  * Helper functions
@@ -21,6 +21,12 @@ const isUpperCase = (str) => str === str.toUpperCase()
  * @returns {number} position e.g 1 
 */
 const getAlphabetPosition = (letter) => 'abcdefghijklmnopqrstuvwxyz'.split('').findIndex((l) => letter.toLocaleLowerCase() === l) + 1;
+
+/**
+ * @param {string} position e.g 1 
+ * @returns {number} lowercase letter e.g a
+*/
+const getLetterByAlphabetPosition = (position) => 'abcdefghijklmnopqrstuvwxyz'[position - 1];
 
 /**
  * @param {string} str binary string e.g 01010000
@@ -73,9 +79,9 @@ const convertIntegerToBinaryString = (integer) => {
     }
 
     // handled cases when binary string is less than 8 characters
-    if (binaryString === ''  || binaryString.length < 8) {
+    if (binaryString === '' || binaryString.length < 8) {
         while (binaryString.length < 8) {
-            binaryString += 0;
+            binaryString += '0';
         }
     }
 
@@ -83,21 +89,57 @@ const convertIntegerToBinaryString = (integer) => {
 }
 
 /**
- * @param {string} str e.g AAA accepts letters only.
- * @returns {string} 010000010100000101000001
+ * @param {string} str e.g AAA accepts letters and spaces only.
+ * @returns {string} e.g 010000010100000101000001
 */
 const translateASCIItoBinaryString = (str) => {
-    if (!/^[a-zA-Z]+$/.test(str)) { // ensures that strings are only letters
+    if (!/^[a-zA-Z\s]+$/.test(str)) { // ensures that strings are only letters
         return null;
     }
-    const letterArr = str.split('');
-    const binaryArray = letterArr.map((letter) => {
-      const letterValue = getAlphabetPosition(letter);
-      const leadingMarker = isUpperCase(letter) ? '010' : '011';
-      return convertIntegerToBinaryString(letterValue).replace(/^\d{1,3}/, leadingMarker);
+    const charArr = str.split('');
+    const binaryArray = charArr.map((char) => {
+      if (' ' === char) {
+        return '00100000';
+      }
+      const charValue = getAlphabetPosition(char);
+      const leadingMarker = isUpperCase(char) ? '010' : '011';
+      return convertIntegerToBinaryString(charValue).replace(/^\d{1,3}/, leadingMarker);
     });
   
     return binaryArray.join('');
+}
+
+/**
+ * @param {string} str e.g AAA accepts letters only.
+ * @returns {string} 010000010100000101000001
+*/
+const translateBinarytoASCIIString = (str) => {
+    if (!/^[0-1]+$/.test(str)) {
+        return null;
+    }
+
+    const ASCIIArray = getByteArray(str).map((byte) => {
+        if (byte === '00100000') {
+          return ' ';
+        }
+
+        const caseMarker = byte.substring(0, 3);
+        const rest = byte.substring(3, 8);
+        const numberValue = getBinaryStringValue(`0000${rest}`);
+    
+        if (numberValue > 26 || numberValue < 1) {
+            return '?';
+        }
+    
+        const letter = getLetterByAlphabetPosition(numberValue);
+        if (caseMarker === '010') {
+            return letter.toUpperCase();
+        }
+
+        return letter;
+    } );
+
+    return ASCIIArray.join('');
 }
 
 /**
@@ -129,10 +171,10 @@ const solution3 = (str) => translateASCIItoBinaryString(str);
 
 /**
  * @description Question 4 - translate a binary string to an ASCII text string .
- * @param {string} str binaryString e.g 01010000 
- * @returns {string} ASCII string like 'AAAA'
+ * @param {string} str binaryString e.g 01000001
+ * @returns {string} ASCII string like 'A'
 */
-const solution4 = (str) => {}
+const solution4 = (str) => translateBinarytoASCIIString(str);
 
 /**
  * Tests
@@ -140,4 +182,4 @@ const solution4 = (str) => {}
 testSolution1(solution1);
 testSolution2(solution2);
 testSolution3(solution3);
-
+testSolution4(solution4);
