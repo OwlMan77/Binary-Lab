@@ -51,4 +51,4 @@ Knowing this let's try a few things in **NodeJS** :
 
 (Some advice make some helper functions as you build your solutions. DRY practices are important.)
 
-##  Section 2: Bitshift operators
+##  Section 2: Bitwise operators
