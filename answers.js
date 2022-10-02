@@ -143,7 +143,7 @@ const translateBinarytoASCIIString = (str) => {
 }
 
 /**
- *  Section 1 
+ *  Section 1 - Binary Basics
  * */ 
 
 /**
@@ -183,3 +183,9 @@ testSolution1(solution1);
 testSolution2(solution2);
 testSolution3(solution3);
 testSolution4(solution4);
+
+
+/**
+ *  Section 2 - Bitshift operators
+ * */
+
