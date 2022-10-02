@@ -124,9 +124,37 @@ const testSolution3 = (cb) => {
         inputValue: '8980---{}90909',
         expectedResult: null,
     }
+    ];
+
+    cond(cb, tests);
+}
+
+/**
+ * @param {testCallback} cb
+*/
+const testSolution4 = (cb) => {
+
+    console.log('\x1b[33m', 'Create a function that will translate a binary string into an ASCII text string.');
+    const tests = [{
+        testName: 'Should convert 010000010100000101000001 correctly',
+        inputValue: '010000010100000101000001',
+        expectedResult: 'AAA',
+    },
+    {
+        testName: 'Should convert 0101010001101000011001010010000001100011011000010110101101100101001000000110100101110011001000000110000100100000011011000110100101100101 correctly',
+        inputValue: '0101010001101000011001010010000001100011011000010110101101100101001000000110100101110011001000000110000100100000011011000110100101100101',
+        expectedResult: 'The cake is a lie',
+    },
+    {
+        testName: 'Should return null for non binary strings',
+        inputValue: '0--0-0-000-0-0-0-0-0-00-',
+        expectedResult: null,
+    }
     ]
 
     cond(cb, tests);
 }
 
-module.exports = { testSolution1, testSolution2, testSolution3 };
+// 0101010001101000011001010010000001100011011000010110101101100101001000000110100101110011001000000110000100100000011011000110100101100101
+// The cake is a lie
+module.exports = { testSolution1, testSolution2, testSolution3, testSolution4 };
