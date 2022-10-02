@@ -6,7 +6,7 @@ const { testSolution1, testSolution2, testSolution3, testSolution4 } = require('
 
 /**
  * @param {string} str binary string e.g 0000000000000000
- * @returns {Array<string>} string byte strings
+ * @returns {Array<string>} string byte strings e.g ['00000000', '00000000']
 */
 const getByteArray = (str) => str.match(/.{8}/g);
 
