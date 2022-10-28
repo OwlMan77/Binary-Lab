@@ -31,7 +31,7 @@ So after watching this I've been reminded of a few things about bits:
 - Binary is read right to left
 - Every 8 bits is a byte
 - To calculate the value of a byte you can use powers of two.
-- Knowing this means the max value of byte is 1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 = 255 (`11111111` in binary)
+- Knowing this means the max value of a byte is 1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 = 255 (`11111111` in binary)
 
 ASCII works the following way:
 - In text every byte is used to represent an ASCII character
@@ -52,3 +52,57 @@ Knowing this let's try a few things in **NodeJS** :
 (Some advice make some helper functions as you build your solutions. DRY practices are important.)
 
 ##  Section 2: Bitwise operators
+
+### Preface
+
+For this section we will be using JavaScript integers. These are stored as 32-bit values (e.g `00000000000000000000000000000001` for `1`). only 31 bits are used for the integer value the leading bit will show if the value is a negative (`0`) or positive number (`1`).
+
+
+### Operators 
+
+#### **`|` - `OR`**
+
+Will compare two bit values bit by bit and return 1 for each position if either are 1. Will return 0 otherwise.
+
+**Example:**
+
+```
+const a = 1 // 00000000000000000000000000000001
+
+const b = 8 // 00000000000000000000000000001000
+
+console.log(1 | 8);
+// will return 9 as it is 00000000000000000000000000001001
+```
+
+#### **`&` - `AND`**
+
+Will compare two bit values bit by bit and return 1 for each position if both are 1. Will return 0 otherwise.
+
+**Example:**
+
+```
+const a = 1 // 00000000000000000000000000000001
+
+const b = 9 // 00000000000000000000000000001001
+
+console.log(1 | 9);
+
+// will return 1 as it is 00000000000000000000000000000001
+```
+
+#### ``~`` - ``NOT ``
+
+Will invert the operand (the bit value being manipulated).
+
+**Example:**
+
+```
+const a = 1 // 00000000000000000000000000000001
+
+const b = 9 // 00000000000000000000000000001001
+
+console.log(1 | 9);
+
+// will return 1 as it is 00000000000000000000000000000001
+```
