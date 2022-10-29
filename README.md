@@ -106,3 +106,19 @@ console.log(1 | 9);
 
 // will return 1 as it is 00000000000000000000000000000001
 ```
+
+#### ``^`` - ``XOR`` 
+
+Will compare two bit values bit by bit and will return 1 if each position does not match.
+
+**Example:**
+
+```
+const a = 1 // 00000000000000000000000000000001
+
+const b = 9 // 00000000000000000000000000001001
+
+console.log(1 ^ 9);
+
+// will return 8 as it is 00000000000000000000000000001000
+```
